@@ -22,7 +22,7 @@ public class FactureController {
     FactureRepository factureRepository;
 
 
-    @PutMapping("/add")
+    @PutMapping("/")
     @ResponseBody
     public ResponseEntity postResponseController(
             @RequestBody AjoutFacture ajoutFacture) {
@@ -43,13 +43,13 @@ public class FactureController {
         }
 
 
-        if(contactexp.getStatus() != 1)
+        if(contactexp.getUtilisateur().getStatus() != 1)
         {
             return reponse.Out(reponse.SetRetour("Expediteur non autorisé", 404), HttpStatus.NOT_FOUND);
 
         }
 
-        if(contactbenf.getStatus() != 1)
+        if(contactbenf.getUtilisateur().getStatus() != 1)
         {
             return reponse.Out(reponse.SetRetour("Beneficiaire non autorisé", 404), HttpStatus.NOT_FOUND);
 
@@ -65,14 +65,15 @@ public class FactureController {
         facture.setDestinataire(contactbenf.getValeur());
         facture.setDestinatairei(contactbenf.getUtilisateur().getId());
         facture.setEmetteur(contactexp.getValeur());
-        facture.setDestinatairei(contactexp.getUtilisateur().getId());
+        facture.setEmetteuri(contactexp.getUtilisateur().getId());
         facture.setImg(ajoutFacture.getImg());
         facture.setMontant(ajoutFacture.getMontant());
+        facture.setLibelle(ajoutFacture.getLibelle());
         facture.setEtat("ENCOURS");
         try {
             factureRepository.save(facture);
         } catch (Exception e) {
-            reponse.SetRetour("Une erreur est survenue durant l'enregistrement de la facture ", 500);
+            reponse.SetRetour("Une erreur est survenue durant l'enregistrement de la facture "+e.toString(), 500);
             return reponse.Out(reponse, HttpStatus.INTERNAL_SERVER_ERROR);
         }
 

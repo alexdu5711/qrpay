@@ -35,8 +35,8 @@ public class Facture implements Serializable {
 
     @Column(name = "r_montant")
     @Valid
-    @NotNull(message = "Veuillez entrer saisir libelle")
-    @NotEmpty(message = "Veuillez entrer saisir libelle")
+    @NotNull()
+
     private int montant;
 
 
@@ -53,7 +53,6 @@ public class Facture implements Serializable {
     @Column(name = "r_emetteuri")
     @Valid
     @NotNull(message = "Veuillez entrer saisir r_emetteuri")
-    @NotEmpty(message = "Veuillez entrer saisir r_emetteuri")
     private int emetteuri;
 
 
@@ -66,11 +65,11 @@ public class Facture implements Serializable {
     @Column(name = "r_destinatairei")
     @Valid
     @NotNull(message = "Veuillez entrer saisir r_destinatairei")
-    @NotEmpty(message = "Veuillez entrer saisir r_destinatairei")
+
     private int destinatairei;
 
 
-    @Column(name = "r_etat",length=15)
+    @Column(name = "r_etat",length=25)
     @Valid
     @NotNull(message = "Veuillez entrer saisir r_etat")
     @NotEmpty(message = "Veuillez entrer saisir r_etat")
