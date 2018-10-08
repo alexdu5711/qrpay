@@ -29,7 +29,7 @@ public class AnnonceController {
     @GetMapping("/")
     public ResponseEntity postResponseController()
     {
-        //List<Banque> banqueList = banqueRepository.findAll(Sort.by("libelle"));
+
         List<Annonces> annoncesList = annonceRepository.findByStatus(1,PageRequest.of(0, 5));
         return new ResponseEntity<>(annoncesList,HttpStatus.OK);
     }
