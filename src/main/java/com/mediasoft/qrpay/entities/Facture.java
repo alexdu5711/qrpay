@@ -53,6 +53,7 @@ public class Facture implements Serializable {
     @Column(name = "r_emetteuri")
     @Valid
     @NotNull(message = "Veuillez entrer saisir r_emetteuri")
+    @JsonIgnore
     private int emetteuri;
 
 
@@ -63,6 +64,7 @@ public class Facture implements Serializable {
     private String destinataire;
 
     @Column(name = "r_destinatairei")
+    @JsonIgnore
     @Valid
     @NotNull(message = "Veuillez entrer saisir r_destinatairei")
 
